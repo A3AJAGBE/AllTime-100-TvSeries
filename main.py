@@ -12,4 +12,10 @@ website_data = response.text
 soup = BeautifulSoup(website_data, "html.parser")
 tv_shows = soup.find_all(name="h2")
 tv_titles = [tv.getText() for tv in tv_shows[3:-1]]
-print(tv_titles)
+# Reverse the order of the list
+tv_titles_asc = tv_titles[::-1]
+
+# Add the list to txt file
+with open("tvShows.txt", mode="w") as file:
+    for tv in tv_titles_asc:
+        file.write(f"{tv}\n")
